@@ -1,0 +1,280 @@
+<title>FAQ — BathNoir</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap">
+<style>
+  :root{
+    --bg:#f7f3ee;--bg2:#efe9e0;--border:rgba(160,130,100,.18);
+    --border2:rgba(160,130,100,.1);--fg:#2a2118;--fg-muted:#8a7560;
+    --fg-light:#b5a490;--amber:#c8923a;
+    --cta-bg:#2a2118;--cta-fg:#f7f3ee;color-scheme:light;
+  }
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#1a1510;--bg2:#221c15;--border:rgba(200,170,130,.15);
+    --border2:rgba(200,170,130,.08);--fg:#f0e8da;--fg-muted:#a8947c;
+    --fg-light:#7a6a55;--amber:#d4a050;
+    --cta-bg:#f0e8da;--cta-fg:#1a1510;color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#1a1510;--bg2:#221c15;--border:rgba(200,170,130,.15);
+    --border2:rgba(200,170,130,.08);--fg:#f0e8da;--fg-muted:#a8947c;
+    --fg-light:#7a6a55;--amber:#d4a050;
+    --cta-bg:#f0e8da;--cta-fg:#1a1510;color-scheme:dark;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{
+    background:var(--bg);color:var(--fg);
+    font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:14px;line-height:1.65;
+    margin:0;
+    padding-left:max(16px,env(safe-area-inset-left,0px));
+    padding-right:max(16px,env(safe-area-inset-right,0px));
+    overflow-x:hidden;
+  }
+  .wrap{max-width:780px;margin:0 auto;}
+
+  /* HEADER */
+  header{
+    padding-top:40px;padding-bottom:24px;
+    display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--border2);
+  }
+  .logo{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.1rem;letter-spacing:.38em;text-transform:uppercase;color:var(--fg);text-decoration:none;}
+  .logo-sep{color:var(--amber);margin:0 2px;}
+  .badge{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:100px;padding:3px 10px;opacity:.8;}
+
+  /* PAGE TITLE */
+  .page-title-block{padding-top:56px;padding-bottom:40px;border-bottom:1px solid var(--border2);}
+  .page-eyebrow{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:16px;}
+  .page-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(2.4rem,6vw,4rem);line-height:1;letter-spacing:-.01em;margin:0 0 16px;text-wrap:balance;}
+  .page-intro{color:var(--fg-muted);font-size:14px;line-height:1.8;max-width:540px;}
+
+  /* FAQ SECTIONS */
+  .faq-section{padding-block:48px;border-bottom:1px solid var(--border2);}
+  .faq-section:last-of-type{border-bottom:none;}
+  .section-label{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:32px;}
+
+  .faq-item{margin-bottom:0;}
+  .faq-item+.faq-item{border-top:1px solid var(--border2);}
+
+  .faq-q{
+    width:100%;background:none;border:none;cursor:pointer;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+    padding:22px 0;text-align:left;color:var(--fg);
+    font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;font-weight:400;line-height:1.3;
+    transition:color .2s;
+  }
+  .faq-q:hover{color:var(--amber);}
+  .faq-icon{
+    flex-shrink:0;width:18px;height:18px;border:1px solid var(--border);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;
+    transition:transform .25s,border-color .2s;color:var(--fg-muted);font-size:12px;
+  }
+  .faq-item.open .faq-icon{transform:rotate(45deg);border-color:var(--amber);color:var(--amber);}
+
+  .faq-a{
+    max-height:0;overflow:hidden;
+    transition:max-height .35s ease,padding .25s;
+    color:var(--fg-muted);font-size:13.5px;line-height:1.85;
+  }
+  .faq-item.open .faq-a{max-height:600px;padding-bottom:22px;}
+  .faq-a strong{color:var(--fg);font-weight:400;}
+  .faq-a a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(200,146,58,.35);}
+  .faq-a a:hover{border-color:var(--amber);}
+
+  /* AVISO LEGAL BOX */
+  .legal-box{
+    margin-top:48px;padding:24px 28px;
+    background:var(--bg2);border:1px solid var(--border);border-radius:4px;
+  }
+  .legal-box-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:10px;}
+  .legal-box p{color:var(--fg-muted);font-size:12.5px;line-height:1.8;margin:0;}
+  .legal-box strong{color:var(--fg);font-weight:400;}
+
+  /* FOOTER */
+  footer{
+    padding-block:32px;margin-top:0;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    border-top:1px solid var(--border2);
+  }
+  .footer-logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:.9rem;letter-spacing:.3em;text-transform:uppercase;color:var(--fg-light);}
+  .footer-nav{display:flex;gap:20px;flex-wrap:wrap;}
+  .footer-nav a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-muted);text-decoration:none;transition:color .2s;}
+  .footer-nav a:hover{color:var(--amber);}
+  .footer-note{font-size:11px;color:var(--fg-light);}
+
+  /* ANIM */
+  .anim{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
+  .anim.in{opacity:1;transform:none;}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <a href="index.html" class="logo">Bath<span class="logo-sep">&middot;</span>Noir</a>
+    <span class="badge">Preguntas frecuentes</span>
+  </header>
+
+  <div class="page-title-block anim">
+    <p class="page-eyebrow">Legal &amp; Privacidad</p>
+    <h1 class="page-title">Preguntas frecuentes</h1>
+    <p class="page-intro">Todo lo que necesitas saber antes de adquirir BathNoir: legalidad, privacidad, responsabilidad y límites de uso. Sin letra pequeña.</p>
+  </div>
+
+  <!-- SECCIÓN 1: LEGALIDAD -->
+  <section class="faq-section anim">
+    <p class="section-label">Legalidad</p>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Es legal BathNoir en España y en la Unión Europea?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Sí, con condiciones. BathNoir es un producto legalmente válido cuando se usa entre adultos que han prestado su consentimiento expreso y libre. La cámara integrada no está activa por defecto: el usuario activa el sistema de forma consciente y toda grabación o emisión queda registrada de forma trazable. <strong>El uso legal depende exclusivamente del comportamiento del usuario, no del producto en sí.</strong>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Para quién NO está diseñado BathNoir?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        BathNoir no está concebido para entornos familiares con menores, para espacios compartidos sin consentimiento explícito de todos los convivientes, ni para ningún uso que implique capturar imágenes de personas sin su conocimiento. <strong>No es un producto de vigilancia.</strong> Es un producto de privacidad íntima para adultos que deciden soberanamente qué hacen con su propio espacio.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Qué ocurre legalmente si alguien graba o difunde imágenes sin consentimiento?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Las consecuencias son graves. El <strong>artículo 197.7 del Código Penal español</strong> tipifica la difusión no consentida de imágenes íntimas con penas de <strong>3 meses a 1 año de prisión</strong> o multa de 6 a 12 meses. Si la víctima es cónyuge o pareja, la pena sube a <strong>1 a 5 años</strong>. Si las imágenes se obtuvieron sin consentimiento, se añade el delito del artículo 197.1 CP. A nivel europeo, estas conductas también pueden constituir infracciones graves del <strong>Reglamento General de Protección de Datos (RGPD)</strong>, con sanciones de hasta 20 millones de euros o el 4% de la facturación global anual. BathNoir no puede ser cómplice de ninguna de estas conductas: el sistema registra toda actividad de forma trazable e irrefutable.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: PRIVACIDAD Y DATOS -->
+  <section class="faq-section anim">
+    <p class="section-label">Privacidad y datos</p>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿BathNoir almacena, accede o visualiza mi contenido?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        No. BathNoir funciona con arquitectura <strong>zero-knowledge</strong>: la aplicación actúa únicamente como conector entre el hardware y las plataformas que el usuario autoriza expresamente. En ningún momento el contenido pasa por servidores de BathNoir, es almacenado por BathNoir ni puede ser visualizado por BathNoir o sus empleados. Lo que ocurre en tu espacio es tuyo. Solo tuyo.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Qué datos sí registra el sistema y por qué?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        El sistema genera un <strong>registro de trazabilidad local</strong>, cifrado y almacenado únicamente en el dispositivo del usuario. Este registro contiene: fecha y hora de cada sesión, plataformas autorizadas en cada conexión, y una huella digital (hash SHA-256) de cada evento. El usuario puede exportar este registro en cualquier momento en formato PDF certificado. Este registro existe para proteger al usuario: en caso de uso indebido por un tercero, constituye prueba admisible ante autoridades judiciales.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Mis imágenes pueden considerarse datos biométricos bajo el RGPD?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Potencialmente sí. Las imágenes que permiten identificar a una persona mediante sus características corporales pueden clasificarse como <strong>datos de categoría especial</strong> según el artículo 9 del RGPD. Por este motivo BathNoir adopta el principio de minimización: no recoge, no almacena ni procesa contenido. El usuario es el único responsable del tratamiento de sus propias imágenes.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: USO RESPONSABLE -->
+  <section class="faq-section anim">
+    <p class="section-label">Uso responsable</p>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Necesito el consentimiento de las personas que viven conmigo?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Sí, siempre. Cualquier persona mayor de edad que comparta el hogar y pueda hacer uso del espacio donde está instalado BathNoir debe prestar su consentimiento <strong>expreso, informado y libre</strong> antes de la instalación. Este consentimiento debe quedar documentado. BathNoir proporciona un formulario de consentimiento para convivientes como parte del proceso de alta. Sin ese consentimiento, el uso puede constituir un delito.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Se puede instalar BathNoir en un hogar donde haya menores?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        No. BathNoir está <strong>expresamente contraindicado</strong> en cualquier hogar donde residan o visiten habitualmente personas menores de 18 años. Esta restricción no es negociable. El proceso de alta incluye una declaración jurada al respecto. Cualquier uso en presencia de menores constituye un uso ilícito del producto y puede derivar en responsabilidad penal grave, con independencia de que la cámara estuviera activa o no en ese momento.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Puedo compartir o publicar el contenido que genero con BathNoir?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Solo si todas las personas que aparecen en el contenido han dado su consentimiento expreso para esa difusión concreta. La plataforma de destino también debe ser una de las autorizadas en la lista blanca del sistema. Compartir imágenes íntimas de terceros sin su consentimiento, aunque fueran captadas legalmente, es un delito en España y en toda la Unión Europea. <strong>BathNoir no puede controlar lo que haces con tu contenido, pero la ley sí lo hace.</strong>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Cómo sé en cada momento si la cámara está activa?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        BathNoir incluye dos mecanismos de estado independientes: un <strong>indicador LED físico</strong> visible desde dentro del espacio que señala el estado de la cámara, y un <strong>interruptor físico de circuito</strong> que corta la alimentación eléctrica de la cámara a nivel de hardware —no software—, garantizando que ningún fallo de aplicación pueda mantener la cámara activa sin que el usuario lo sepa. Si el LED está apagado y el interruptor está en posición de corte, la cámara no puede operar bajo ninguna circunstancia.
+      </div>
+    </div>
+  </section>
+
+  <!-- AVISO LEGAL -->
+  <div class="legal-box anim">
+    <p class="legal-box-label">Aviso legal</p>
+    <p>Esta página tiene carácter informativo y no constituye asesoramiento jurídico. Las consecuencias legales descritas están basadas en la legislación española vigente (Código Penal, RGPD, Directiva EU 2024/2853) y pueden variar según el país de residencia del usuario. BathNoir recomienda consultar con un profesional jurídico ante cualquier duda sobre la aplicación de estas normas en su caso concreto. Para denuncias, quejas o consultas, utilice el <a href="contacto.html">formulario de contacto</a>.</p>
+  </div>
+
+  <footer>
+    <span class="footer-logo">BathNoir</span>
+    <nav class="footer-nav">
+      <a href="index.html">Inicio</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="campaign_page.html">Campaña</a>
+    </nav>
+    <span class="footer-note">&copy; 2027 BathNoir &mdash; All rights reserved</span>
+  </footer>
+
+</div><!-- end .wrap -->
+
+<script>
+  // Animaciones de entrada
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+  },{threshold:.08});
+  document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+
+  // Acordeón FAQ
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Cerrar todos
+      document.querySelectorAll('.faq-item.open').forEach(i=>{
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      // Abrir el actual si estaba cerrado
+      if(!isOpen){
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+</script>

@@ -1,0 +1,344 @@
+<title>Contacto — BathNoir</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap">
+<style>
+  :root{
+    --bg:#f7f3ee;--bg2:#efe9e0;--border:rgba(160,130,100,.18);
+    --border2:rgba(160,130,100,.1);--fg:#2a2118;--fg-muted:#8a7560;
+    --fg-light:#b5a490;--amber:#c8923a;
+    --cta-bg:#2a2118;--cta-fg:#f7f3ee;--input-bg:#fff;color-scheme:light;
+  }
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#1a1510;--bg2:#221c15;--border:rgba(200,170,130,.15);
+    --border2:rgba(200,170,130,.08);--fg:#f0e8da;--fg-muted:#a8947c;
+    --fg-light:#7a6a55;--amber:#d4a050;
+    --cta-bg:#f0e8da;--cta-fg:#1a1510;--input-bg:#2a2118;color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#1a1510;--bg2:#221c15;--border:rgba(200,170,130,.15);
+    --border2:rgba(200,170,130,.08);--fg:#f0e8da;--fg-muted:#a8947c;
+    --fg-light:#7a6a55;--amber:#d4a050;
+    --cta-bg:#f0e8da;--cta-fg:#1a1510;--input-bg:#2a2118;color-scheme:dark;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{
+    background:var(--bg);color:var(--fg);
+    font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:14px;line-height:1.65;
+    margin:0;
+    padding-left:max(16px,env(safe-area-inset-left,0px));
+    padding-right:max(16px,env(safe-area-inset-right,0px));
+    overflow-x:hidden;
+  }
+  .wrap{max-width:780px;margin:0 auto;}
+
+  /* HEADER */
+  header{
+    padding-top:40px;padding-bottom:24px;
+    display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--border2);
+  }
+  .logo{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.1rem;letter-spacing:.38em;text-transform:uppercase;color:var(--fg);text-decoration:none;}
+  .logo-sep{color:var(--amber);margin:0 2px;}
+  .badge{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:100px;padding:3px 10px;opacity:.8;}
+
+  /* PAGE TITLE */
+  .page-title-block{padding-top:56px;padding-bottom:48px;border-bottom:1px solid var(--border2);}
+  .page-eyebrow{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:16px;}
+  .page-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(2.4rem,6vw,4rem);line-height:1;letter-spacing:-.01em;margin:0 0 16px;text-wrap:balance;}
+  .page-intro{color:var(--fg-muted);font-size:14px;line-height:1.8;max-width:520px;}
+
+  /* LAYOUT PRINCIPAL */
+  .contact-layout{
+    display:grid;grid-template-columns:1fr 360px;gap:60px;
+    padding-top:52px;padding-bottom:64px;
+    border-bottom:1px solid var(--border2);
+  }
+  @media(max-width:640px){.contact-layout{grid-template-columns:1fr;gap:40px;}}
+
+  /* FORMULARIO */
+  .form-wrap{}
+  .form-label-section{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:28px;}
+
+  .field{margin-bottom:20px;}
+  .field label{
+    display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--fg-muted);margin-bottom:8px;font-weight:400;
+  }
+  .field input,
+  .field select,
+  .field textarea{
+    width:100%;background:var(--input-bg);color:var(--fg);
+    border:1px solid var(--border);border-radius:3px;
+    font-family:'Inter',system-ui,sans-serif;font-size:13.5px;font-weight:300;
+    padding:12px 14px;outline:none;
+    transition:border-color .2s;
+    -webkit-appearance:none;appearance:none;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus{border-color:var(--amber);}
+  .field textarea{resize:vertical;min-height:120px;line-height:1.7;}
+  .field select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a8947c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;
+    padding-right:36px;cursor:pointer;
+  }
+
+  .field-note{font-size:11px;color:var(--fg-light);margin-top:6px;line-height:1.6;}
+
+  .submit-btn{
+    width:100%;padding:14px 24px;
+    background:var(--cta-bg);color:var(--cta-fg);
+    border:none;border-radius:3px;cursor:pointer;
+    font-family:'Inter',system-ui,sans-serif;font-size:10px;font-weight:500;
+    letter-spacing:.22em;text-transform:uppercase;
+    transition:opacity .2s,transform .15s;
+    margin-top:8px;
+  }
+  .submit-btn:hover{opacity:.85;}
+  .submit-btn:active{transform:scale(.99);}
+  .submit-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+  /* SUCCESS */
+  .success-state{
+    padding:32px 0;text-align:center;display:none;
+  }
+  .success-icon{
+    width:40px;height:40px;border-radius:50%;border:1px solid var(--amber);
+    display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .success-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;font-weight:400;margin:0 0 8px;}
+  .success-text{color:var(--fg-muted);font-size:13px;margin:0;}
+
+  /* SIDEBAR INFO */
+  .sidebar{}
+  .sidebar-block{margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--border2);}
+  .sidebar-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .sidebar-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:12px;}
+  .sidebar-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;font-weight:400;margin:0 0 8px;line-height:1.3;}
+  .sidebar-text{color:var(--fg-muted);font-size:12.5px;line-height:1.8;margin:0;}
+  .sidebar-text a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(200,146,58,.3);}
+  .sidebar-text a:hover{border-color:var(--amber);}
+  .sidebar-text strong{color:var(--fg);font-weight:400;}
+
+  /* AUTORIDADES */
+  .authorities-section{padding-block:48px;}
+  .section-label{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:28px;}
+  .authority-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+  .authority-card{
+    padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:3px;
+  }
+  .authority-name{font-size:12px;font-weight:500;color:var(--fg);margin-bottom:4px;letter-spacing:.04em;}
+  .authority-desc{font-size:11.5px;color:var(--fg-muted);line-height:1.7;margin:0;}
+
+  /* FOOTER */
+  footer{
+    padding-block:32px;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    border-top:1px solid var(--border2);
+  }
+  .footer-logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:.9rem;letter-spacing:.3em;text-transform:uppercase;color:var(--fg-light);}
+  .footer-nav{display:flex;gap:20px;flex-wrap:wrap;}
+  .footer-nav a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-muted);text-decoration:none;transition:color .2s;}
+  .footer-nav a:hover{color:var(--amber);}
+  .footer-note{font-size:11px;color:var(--fg-light);}
+
+  .anim{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
+  .anim.in{opacity:1;transform:none;}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <a href="index.html" class="logo">Bath<span class="logo-sep">&middot;</span>Noir</a>
+    <span class="badge">Contacto</span>
+  </header>
+
+  <div class="page-title-block anim">
+    <p class="page-eyebrow">Denuncias, quejas y consultas</p>
+    <h1 class="page-title">Ponte en contacto</h1>
+    <p class="page-intro">BathNoir toma en serio cada comunicación recibida. Si has detectado un uso indebido del producto, tienes una queja formal o necesitas información adicional, este es el canal adecuado.</p>
+  </div>
+
+  <div class="contact-layout">
+
+    <!-- FORMULARIO -->
+    <div class="form-wrap anim">
+      <p class="form-label-section">Formulario de contacto</p>
+
+      <form id="contact-form" action="https://formspree.io/f/xwlllyrk" method="POST" novalidate>
+        <!-- Campo trampa anti-spam -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_subject" value="Contacto BathNoir — nueva solicitud">
+
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="given-name" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" required>
+        </div>
+
+        <div class="field">
+          <label for="tipo">Tipo de consulta</label>
+          <select id="tipo" name="tipo" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="denuncia">Denuncia — uso indebido del producto</option>
+            <option value="queja">Queja formal</option>
+            <option value="consulta-legal">Consulta legal o de privacidad</option>
+            <option value="consulta-tecnica">Consulta técnica</option>
+            <option value="prensa">Prensa y medios</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Describe tu consulta con el mayor detalle posible. Si se trata de una denuncia, incluye fecha, descripción de los hechos y cualquier evidencia disponible." required></textarea>
+          <p class="field-note">Para denuncias que puedan implicar responsabilidad penal, BathNoir cooperará con las autoridades competentes y aportará los registros de trazabilidad correspondientes cuando así lo requieran.</p>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Enviar mensaje</button>
+      </form>
+
+      <div class="success-state" id="success-state">
+        <div class="success-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="2.5,8 6,11.5 13.5,4.5"/>
+          </svg>
+        </div>
+        <p class="success-title">Mensaje recibido.</p>
+        <p class="success-text">Te responderemos en un plazo máximo de 72 horas hábiles.</p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar anim">
+      <div class="sidebar-block">
+        <p class="sidebar-label">Plazo de respuesta</p>
+        <p class="sidebar-title">Máximo 72 horas hábiles</p>
+        <p class="sidebar-text">Todas las comunicaciones recibidas son atendidas. Las denuncias relacionadas con posibles delitos tienen prioridad y se tramitan de forma urgente.</p>
+      </div>
+
+      <div class="sidebar-block">
+        <p class="sidebar-label">Contacto directo</p>
+        <p class="sidebar-title">Canal de comunicación</p>
+        <p class="sidebar-text">
+          Para comunicaciones formales o urgentes:<br>
+          <strong>bathnoirdeluxe@gmail.com</strong><br><br>
+          No incluyas información sensible —como datos bancarios o identificativos— en el asunto del correo.
+        </p>
+      </div>
+
+      <div class="sidebar-block">
+        <p class="sidebar-label">Protección de datos</p>
+        <p class="sidebar-title">Tu privacidad importa</p>
+        <p class="sidebar-text">Los datos que nos facilites a través de este formulario se utilizarán exclusivamente para gestionar tu consulta. No serán cedidos a terceros salvo requerimiento judicial. Puedes ejercer tus derechos de acceso, rectificación y supresión enviándonos un correo.</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ORGANISMOS DE DENUNCIA -->
+  <section class="authorities-section anim">
+    <p class="section-label">Si BathNoir no responde — organismos oficiales</p>
+    <div class="authority-grid">
+      <div class="authority-card">
+        <p class="authority-name">AEPD — Agencia Española de Protección de Datos</p>
+        <p class="authority-desc">Para denuncias relacionadas con tratamiento ilícito de datos personales e imágenes. Competente en materia de RGPD en España.<br><br>aepd.es</p>
+      </div>
+      <div class="authority-card">
+        <p class="authority-name">Policía Nacional — Ciberdelincuencia</p>
+        <p class="authority-desc">Para denuncias de difusión no consentida de imágenes íntimas (art. 197.7 CP), extorsión o cualquier delito informático relacionado.<br><br>policia.es</p>
+      </div>
+      <div class="authority-card">
+        <p class="authority-name">Guardia Civil — GDT</p>
+        <p class="authority-desc">Grupo de Delitos Telemáticos. Competente en ciberdelitos y delitos contra la intimidad cometidos a través de medios digitales.<br><br>gdt.guardiacivil.es</p>
+      </div>
+      <div class="authority-card">
+        <p class="authority-name">INCIBE — Instituto Nacional de Ciberseguridad</p>
+        <p class="authority-desc">Asesoramiento y canal de ayuda en materia de ciberseguridad para ciudadanos y empresas. Línea de ayuda: 017.<br><br>incibe.es</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">BathNoir</span>
+    <nav class="footer-nav">
+      <a href="index.html">Inicio</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="campaign_page.html">Campaña</a>
+    </nav>
+    <span class="footer-note">&copy; 2027 BathNoir &mdash; All rights reserved</span>
+  </footer>
+
+</div><!-- end .wrap -->
+
+<script>
+  // Animaciones de entrada
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+  },{threshold:.08});
+  document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+
+  // Formulario
+  const form = document.getElementById('contact-form');
+  const btn = document.getElementById('submit-btn');
+  const successState = document.getElementById('success-state');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    // Validación básica
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const tipo = document.getElementById('tipo').value;
+    const mensaje = document.getElementById('mensaje').value.trim();
+
+    if(!nombre || !email || !tipo || !mensaje){
+      // Marcar campos vacíos
+      [
+        {id:'nombre',val:nombre},
+        {id:'email',val:email},
+        {id:'tipo',val:tipo},
+        {id:'mensaje',val:mensaje}
+      ].forEach(({id,val})=>{
+        const el = document.getElementById(id);
+        if(!val){ el.style.borderColor='rgba(200,80,60,.5)'; setTimeout(()=>el.style.borderColor='',2000); }
+      });
+      return;
+    }
+
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      const el = document.getElementById('email');
+      el.style.borderColor='rgba(200,80,60,.5)';
+      setTimeout(()=>el.style.borderColor='',2000);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    try{
+      const res = await fetch(form.action,{
+        method:'POST',
+        headers:{'Accept':'application/json','Content-Type':'application/x-www-form-urlencoded'},
+        body: new URLSearchParams(new FormData(form))
+      });
+      if(res.ok){
+        form.style.display = 'none';
+        successState.style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Enviar mensaje';
+        alert('Ha ocurrido un error al enviar el formulario. Por favor, inténtalo de nuevo o escríbenos directamente a bathnoirdeluxe@gmail.com');
+      }
+    } catch(_){
+      btn.disabled = false;
+      btn.textContent = 'Enviar mensaje';
+      alert('Ha ocurrido un error de conexión. Por favor, inténtalo de nuevo o escríbenos directamente a bathnoirdeluxe@gmail.com');
+    }
+  });
+</script>
