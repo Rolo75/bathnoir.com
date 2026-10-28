@@ -1,21 +1,5 @@
 <meta charset="utf-8">
-<title>Campaign — BATHNOIR | Transparent Luxury Bathroom on Indiegogo</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Back BATHNOIR on Indiegogo. The world's first transparent luxury bathroom suite with integrated 4K privacy camera and Sanctuary encryption system.">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<link rel="canonical" href="https://bathnoir.com/campaign_page.html">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://bathnoir.com/campaign_page.html">
-<meta property="og:title" content="Campaign — BATHNOIR | Transparent Luxury Bathroom on Indiegogo">
-<meta property="og:description" content="Back BATHNOIR on Indiegogo. The world's first transparent luxury bathroom suite with integrated 4K privacy camera and Sanctuary encryption system.">
-<meta property="og:image" content="https://bathnoir.com/CampañaIndiegogo1.png">
-<meta property="og:site_name" content="BATHNOIR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Campaign — BATHNOIR | Transparent Luxury Bathroom on Indiegogo">
-<meta name="twitter:description" content="Back BATHNOIR on Indiegogo. The world's first transparent luxury bathroom suite with integrated 4K privacy camera and Sanctuary encryption system.">
-<meta name="twitter:image" content="https://bathnoir.com/CampañaIndiegogo1.png">
-
+<title>BATHNOIR &mdash; Campaign</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap">
 <style>
 :root {
@@ -728,26 +712,42 @@ document.querySelectorAll('.faq-item').forEach(item => {
     <div class="lb-badge" id="lbBadge">Render concept</div>
     <div class="lb-caption" id="lbCaption"></div>
   </div>
-</div>
 <script>
 (function(){
   var overlay=document.getElementById('lbOverlay'),
       lbImg=document.getElementById('lbImg'),
       lbCap=document.getElementById('lbCaption'),
       lbBadge=document.getElementById('lbBadge'),
-      imgs=[],idx=0;
-  function gather(){imgs=Array.from(document.querySelectorAll('img[data-lb]'));}
+      items=[],idx=0;
+
+  function gather(){
+    // Collect all clickable image wrappers and standalone imgs with data-lb
+    var wrappers=Array.from(document.querySelectorAll('.prod-img[data-lb-wrap], .hero-img[data-lb-wrap]'));
+    var standalone=Array.from(document.querySelectorAll('img[data-lb]')).filter(function(el){
+      return !el.closest('.prod-img') && !el.closest('.hero-img');
+    });
+    items=[];
+    wrappers.forEach(function(w){
+      var img=w.querySelector('img');
+      if(img) items.push({src:img.src, alt:img.alt||''});
+    });
+    standalone.forEach(function(img){
+      items.push({src:img.src, alt:img.alt||''});
+    });
+  }
+
   function open(i){
-    gather();if(!imgs.length)return;
-    idx=((i%imgs.length)+imgs.length)%imgs.length;
-    var el=imgs[idx];
-    lbImg.src=el.src;lbImg.alt=el.alt||'';
-    lbCap.textContent=el.alt||'';
-    lbBadge.textContent=el.dataset.lbBadge||'Render concept';
+    gather(); if(!items.length) return;
+    idx=((i%items.length)+items.length)%items.length;
+    lbImg.src=items[idx].src;
+    lbImg.alt=items[idx].alt;
+    lbCap.textContent=items[idx].alt;
+    lbBadge.textContent='Render concept';
     overlay.classList.add('open');
     document.body.style.overflow='hidden';
   }
   function close(){overlay.classList.remove('open');lbImg.src='';document.body.style.overflow='';}
+
   document.getElementById('lbClose').onclick=close;
   document.getElementById('lbPrev').onclick=function(e){e.stopPropagation();open(idx-1);};
   document.getElementById('lbNext').onclick=function(e){e.stopPropagation();open(idx+1);};
@@ -758,7 +758,38 @@ document.querySelectorAll('.faq-item').forEach(item => {
     if(e.key==='ArrowLeft')open(idx-1);
     if(e.key==='ArrowRight')open(idx+1);
   });
-  gather();
-  imgs.forEach(function(el,i){el.addEventListener('click',function(){open(i);});});
+
+  function init(){
+    gather();
+    // Wire wrappers
+    document.querySelectorAll('.prod-img, .hero-img').forEach(function(w,wi){
+      var img=w.querySelector('img[data-lb]');
+      if(!img) return;
+      w.setAttribute('data-lb-wrap','');
+      w.style.cursor='zoom-in';
+      w.addEventListener('click',function(){
+        gather();
+        var wIdx=items.findIndex(function(it){return it.src===img.src;});
+        open(wIdx>=0?wIdx:0);
+      });
+    });
+    // Wire any standalone imgs
+    document.querySelectorAll('img[data-lb]').forEach(function(el){
+      if(el.closest('.prod-img')||el.closest('.hero-img')) return;
+      el.addEventListener('click',function(){
+        gather();
+        var si=items.findIndex(function(it){return it.src===el.src;});
+        open(si>=0?si:0);
+      });
+    });
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',init);
+  } else {
+    init();
+  }
 })();
 </script>
+</div>
+
